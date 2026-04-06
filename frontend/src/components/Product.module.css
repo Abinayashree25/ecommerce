@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.productPage {
+  padding: 20px;
+}
+
+/* ================= MOBILE FIRST ================= */
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* IMAGE */
+.productImage {
+  display: flex;
+  justify-content: center;
+}
+
+.productImage img {
+  width: 260px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* DETAILS */
+.productDetails {
+  width: 100%;
+}
+
+.productDetails h1 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.price {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* QTY */
+.qtyBox {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.qtyBox button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* BUTTON */
+.addBtn {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* EXTRA */
+.extra p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* ================= REVIEWS ================= */
+.reviewSection {
+  margin-top: 30px;
+}
+
+.reviewBox {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+/* STARS */
+.stars span {
+  font-size: 50px;   /* 🔥 fixed (not too big) */
+  cursor: pointer;
+}
+
+/* ================= FORM ================= */
+form input,
+form textarea {
+  width: 100%;        /* 🔥 VERY IMPORTANT FIX */
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ================= TOAST ================= */
+.toast {
+  position: fixed;
+  top: 80px;          /* 🔥 navbar avoid */
+  right: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  z-index: 99999;
+  font-size: 14px;
+}
+
+/* ================= TABLET + DESKTOP ================= */
+@media screen and (min-width: 768px) {
+
+  .productContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .productImage img {
+    width: 320px;
+  }
+
+  .productDetails {
+    max-width: 500px;
+  }
+
+  .productDetails h1 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .addBtn {
+    width: 200px;
+  }
+
+  .submitBtn {
+    width: 200px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .productContainer {
+    flex-direction: row;
+    align-items: flex-start;   /* top align */
+    justify-content: center;
+    gap: 25px;
+    padding: 0 20px;
+    max-width: 850px;
+    margin: auto;
+  }
+
+  /* IMAGE */
+  .productImage img {
+    width: 260px;   /* 🔥 smaller than desktop */
+  }
+
+  /* DETAILS */
+  .productDetails {
+    max-width: 450px;
+  }
+
+  .productDetails h1 {
+    font-size: 20px;   /* 🔥 medium size */
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  /* BUTTON */
+  .addBtn {
+    width: 180px;   /* not full */
+  }
+
+  .submitBtn {
+    width: 180px;
+  }
+
+  /* FORM */
+  form input,
+  form textarea {
+    width: 100%;   /* always responsive */
+  }
+
+  /* STARS */
+  .stars span {
+    font-size: 22px;
+  }
+}

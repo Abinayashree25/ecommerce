@@ -1,0 +1,48 @@
+.doctor{
+     display: flex;
+    justify-content: center;
+    /* padding-top: 35px; */
+    font-size: xx-large;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(243, 248, 248);
+    background-image: url(../assets/about-bg-01.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-color: rgb(90, 132, 169); */
+    /* width: 800px; */
+    height: 500px;
+    /* width: 45%; */
+}
+@media screen and (min-width: 0px)and (max-width: 768px) {
+  .doctor {
+    height: auto;              /* content-ku adjust aagum */
+    padding: 20px;             /* spacing kudukum */
+    font-size: 18px;           /* reduce font size */
+    text-align: center;
+    
+    background-position: center;
+    background-size: cover;    /* image full cover */
+    background-attachment: scroll; /* mobile-ku important */
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .doctor {
+    height: auto;                 /* flexible height */
+    padding: 40px 20px;           /* good spacing */
+    font-size: 22px;              /* medium font */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+
+    background-position: center;
+    background-size: cover;       /* full cover */
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* important for tablet */
+  }
+}

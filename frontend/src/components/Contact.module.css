@@ -1,0 +1,167 @@
+/* STATS FIX */
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 50px;
+  text-align: center;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+}
+
+.stune {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 35px;
+  color: #ff4d6d;
+}
+
+/* WHY SECTION */
+.shree {
+    margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  background-color: #f8d9f8;
+}
+
+/* CONTACT */
+.hub {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.bub1 {
+  width: 45%;
+}
+
+.bub2 {
+  width: 45%;
+}
+
+.bub3 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sheet, .sheet1 {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px;
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e63e5c;
+}
+@media screen and (max-width: 768px) {
+
+  /* STATS */
+  .stats {
+    flex-direction: column;     /* row → column */
+    gap: 20px;
+    padding: 30px 15px;
+  }
+
+  .icon {
+    font-size: 28px;            /* konjam small */
+  }
+
+  /* WHY SECTION */
+  .shree {
+    flex-direction: column;     /* stack */
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* CONTACT */
+  .hub {
+    flex-direction: column;     /* side by side → top-bottom */
+    gap: 30px;
+    padding: 25px 15px;
+  }
+
+  .bub1,
+  .bub2 {
+    width: 100%;               /* full width */
+  }
+
+  .bub3 {
+    width: 100%;
+  }
+
+  .sheet,
+  .sheet1 {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;               /* full width button */
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  /* STATS */
+  .stats {
+    flex-wrap: wrap;              /* next line pogum */
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  .stune {
+    width: 45%;                  /* 2 per row */
+  }
+
+  .icon {
+    font-size: 32px;
+  }
+
+  /* WHY SECTION */
+  .shree {
+    flex-direction: column;      /* still stack */
+    gap: 25px;
+    padding: 30px;
+    text-align: center;
+  }
+
+  /* CONTACT */
+  .hub {
+    flex-direction: column;      /* stack better in tablet */
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  .bub1,
+  .bub2 {
+    width: 100%;
+  }
+
+  .bub3 {
+    width: 100%;
+  }
+
+  .sheet,
+  .sheet1 {
+    width: 100%;
+  }
+
+  button {
+    width: 60%;                  /* full illa, nice look */
+    margin: auto;
+  }
+}

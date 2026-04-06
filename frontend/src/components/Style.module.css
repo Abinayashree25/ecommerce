@@ -1,0 +1,89 @@
+.demo {
+    width: 620px;
+    height: 620px;
+    object-fit: cover;
+    /* margin-left: 75%; */
+}
+.heroImg{
+  overflow: hidden;
+}
+.demo1 {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: rgb(143, 77, 88) */
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    
+}
+
+.demo2 {
+    text-align: left;
+
+    margin: auto;
+    font-size: x-large;
+    color: black;
+    width: 500px;
+}
+button {
+    width: 150px;
+    height: 50px;
+    font-size: large;
+}
+@media screen and (max-width: 768px) {
+
+  .demo1 {
+    flex-direction: column-reverse;     /* row → column */
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .demo {
+    width: 100%;               /* full width */
+    max-width: 300px;          /* limit size */
+    height: auto;              
+  }
+
+  .demo2 {
+    width: 100%;               /* full width */
+    max-width: 350px;
+    text-align: center;        /* center for mobile */
+    font-size: 18px;
+  }
+
+  button {
+    width: 100%;               /* full button */
+    max-width: 200px;
+  }
+
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .demo1 {
+    flex-direction: row;        /* side-by-side */
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .demo {
+    /* width: 45%;                half space */
+    max-width: 400px;
+    height: auto;
+  }
+
+  .demo2 {
+    width: 50%;
+    max-width: 400px;
+    text-align: left;          /* desktop feel */
+    font-size: 20px;
+  }
+
+  button {
+    width: 160px;              /* medium button */
+    height: 45px;
+    font-size: 16px;
+  }
+  
+
+}

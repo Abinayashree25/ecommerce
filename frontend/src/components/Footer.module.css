@@ -1,0 +1,36 @@
+.dass {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    height: 250px;
+    /* padding: 0px; */
+    font-size: large;
+    background-color: black;
+    color: white;
+    padding: 45px;
+    
+    /* background-image: url(./assets/01-bg-grunge.jpg); */
+}
+
+@media screen and (max-width: 768px) {
+  .dass {
+    height: auto;              /* flexible height */
+    padding: 20px 15px;        /* spacing add */
+    font-size: 16px;           /* readable size */
+    
+    display: grid;
+    place-items: center;       /* center content */
+    text-align: center;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .dass {
+    height: auto;              /* flexible */
+    padding: 30px 20px;        /* more spacing than mobile */
+    font-size: 18px;           /* medium size */
+    
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+}
