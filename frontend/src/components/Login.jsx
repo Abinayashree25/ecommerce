@@ -24,7 +24,7 @@ function Login({ setIsLoggedIn }) {
       setLoading(true);
       setError("");
 
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch("https://ecommerce-backend-2946.onrender.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

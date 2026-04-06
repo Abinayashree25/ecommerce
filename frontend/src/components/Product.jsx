@@ -36,7 +36,7 @@ function Product() {
     addToCart(cartItem);
 
     try {
-      await fetch("http://localhost:5000/api/cart", {
+      await fetch("https://ecommerce-backend-2946.onrender.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
