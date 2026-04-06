@@ -12,9 +12,8 @@ function Login({ setIsLoggedIn }) {
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // ✅ prevent page reload
+    e.preventDefault();
 
-    // Validation
     if (!email || !password) {
       setError("Please enter email and password");
       return;
@@ -29,7 +28,7 @@ function Login({ setIsLoggedIn }) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password }) // ✅ correct
+        body: JSON.stringify({ email, password })
       });
 
       const data = await res.json();
@@ -40,14 +39,12 @@ function Login({ setIsLoggedIn }) {
         return;
       }
 
-      // ✅ SAVE TOKEN
       localStorage.setItem("token", data.token);
 
-      // ✅ UPDATE STATE
       setIsLoggedIn(true);
 
-      // ✅ REDIRECT
-      navigate("/home");
+      // 🔥 IMPORTANT FIX
+      navigate("/");   // ← HOME PAGE PATH
 
     } catch (err) {
       console.error(err);
@@ -59,7 +56,7 @@ function Login({ setIsLoggedIn }) {
 
   return (
     <div className={Log.loginContainer}>
-      <form className={Log.loginBox} onSubmit={handleLogin}> {/* ✅ form */}
+      <form className={Log.loginBox} onSubmit={handleLogin}>
 
         <p>Login to AS Beauty Store 💖</p>
 

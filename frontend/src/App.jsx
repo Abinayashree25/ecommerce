@@ -19,7 +19,6 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // ✅ Check login on refresh
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -33,10 +32,7 @@ function App() {
 
         <Routes>
 
-          {/* Default redirect */}
-          <Route path="/" element={<Navigate to="/login" />} />
-
-          {/* Login */}
+          {/* Login Route */}
           <Route 
             path="/login" 
             element={<Login setIsLoggedIn={setIsLoggedIn} />} 
@@ -44,7 +40,7 @@ function App() {
 
           {/* Home */}
           <Route 
-            path="/home" 
+            path="/" 
             element={
               isLoggedIn ? (
                 <>
@@ -67,9 +63,14 @@ function App() {
           <Route 
             path="/product" 
             element={
-              isLoggedIn 
-                ? <><Navbar /><Product /></> 
-                : <Navigate to="/login" />
+              isLoggedIn ? (
+                <>
+                  <Navbar />
+                  <Product />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )
             } 
           />
 
@@ -77,9 +78,14 @@ function App() {
           <Route 
             path="/cart" 
             element={
-              isLoggedIn 
-                ? <><Navbar /><Cart /></> 
-                : <Navigate to="/login" />
+              isLoggedIn ? (
+                <>
+                  <Navbar />
+                  <Cart />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )
             } 
           />
 
