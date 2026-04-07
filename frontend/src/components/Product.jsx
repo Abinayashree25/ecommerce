@@ -1,4 +1,4 @@
-import Duke from "./Product.module.css"
+import Duke from "./Product.module.css";
 import { useLocation } from "react-router-dom";
 import { useState, useContext, useLayoutEffect } from "react";
 import { CartContext } from "../CartContext";
@@ -30,13 +30,21 @@ function Product() {
   const increase = () => setQty(qty + 1);
   const decrease = () => qty > 1 && setQty(qty - 1);
 
+  // 🔥 FIXED HANDLE CART
   const handleCart = async () => {
-    const cartItem = { ...product, qty };
+    const cartItem = {
+      productId: product._id || product.name, // ✅ ADD THIS
+      name: product.name,
+      price: product.price,
+      qty: qty
+    };
+
+    console.log("🚀 Sending to backend:", cartItem); // DEBUG
 
     addToCart(cartItem);
 
     try {
-      await fetch("https://ecommerce-backend-2946.onrender.com/api/login", {
+      const res = await fetch("http://localhost:5000/api/auth/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -44,16 +52,17 @@ function Product() {
         body: JSON.stringify(cartItem)
       });
 
-      console.log("Added to DB ✅");
+      const data = await res.json();
+      console.log("👉 Backend response:", data); // DEBUG
+
     } catch (err) {
-      console.log("Error ❌", err);
+      console.log("❌ Error:", err);
     }
 
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  // ✅ THIS WAS MISSING
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm({
@@ -77,9 +86,7 @@ function Product() {
 
   return (
     <div className={Duke.productPage}>
-
       <div className={Duke.productContainer}>
-
         <div className={Duke.productImage}>
           <img src={product.img} alt={product.name} />
         </div>
@@ -132,7 +139,7 @@ function Product() {
 
         <form onSubmit={submitReview}>
           <div className={Duke.stars}>
-            {[1,2,3,4,5].map(star => (
+            {[1, 2, 3, 4, 5].map(star => (
               <span
                 key={star}
                 onClick={() => setRating(star)}

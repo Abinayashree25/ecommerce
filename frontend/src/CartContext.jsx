@@ -2,10 +2,9 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
-function CartProvider({ children }) {
+export const CartProvider = ({ children }) => {   // 👈 change here
   const [cart, setCart] = useState([]);
 
-  // 🛒 ADD TO CART (handles quantity)
   const addToCart = (product) => {
     setCart((prev) => {
       const exist = prev.find(item => item.name === product.name);
@@ -22,7 +21,6 @@ function CartProvider({ children }) {
     });
   };
 
-  // ❌ REMOVE ITEM
   const removeFromCart = (name) => {
     setCart(prev => prev.filter(item => item.name !== name));
   };
@@ -32,6 +30,4 @@ function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
-
-export default CartProvider;
+};

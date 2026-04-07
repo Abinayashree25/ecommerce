@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./components/Login";
@@ -10,92 +10,63 @@ import Skincare from "./components/Skincare";
 import Haircare from "./components/Haircare";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Product from "./components/Product";
-import Cart from "./components/Cart";
-
-import CartProvider from "./CartContext";
-
+import Product from "./components/Product"; 
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // ✅ run on load
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
+    setIsLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
   return (
-    <CartProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Routes>
 
-        <Routes>
+        {/* LOGIN */}
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
 
-          {/* Login Route */}
-          <Route 
-            path="/login" 
-            element={<Login setIsLoggedIn={setIsLoggedIn} />} 
-          />
+        {/* HOME */}
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? (
+              <>
+                <Navbar />
+                <Index />
+                <About />
+                <Makeup />
+                <Skincare />
+                <Haircare />
+                <Contact />
+                <Footer />
+              </>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+         <Route
+          path="/product"
+          element={
+            isLoggedIn ? (
+              <>
+                <Navbar />
+                <Product />
+                <Footer />
+              </>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
-          {/* Home */}
-          <Route 
-            path="/" 
-            element={
-              isLoggedIn ? (
-                <>
-                  <Navbar />
-                  <Index />
-                  <About />
-                  <Makeup />
-                  <Skincare />
-                  <Haircare />
-                  <Contact />
-                  <Footer />
-                </>
-              ) : (
-                <Navigate to="/login" />
-              )
-            } 
-          />
 
-          {/* Product */}
-          <Route 
-            path="/product" 
-            element={
-              isLoggedIn ? (
-                <>
-                  <Navbar />
-                  <Product />
-                </>
-              ) : (
-                <Navigate to="/login" />
-              )
-            } 
-          />
-
-          {/* Cart */}
-          <Route 
-            path="/cart" 
-            element={
-              isLoggedIn ? (
-                <>
-                  <Navbar />
-                  <Cart />
-                </>
-              ) : (
-                <Navigate to="/login" />
-              )
-            } 
-          />
-
-          {/* Catch all */}
-          <Route path="*" element={<Navigate to="/login" />} />
-
-        </Routes>
-
-      </BrowserRouter>
-    </CartProvider>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,9 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Log from './Login.module.css';
+import Log from "./Login.module.css";
 
-function Login({ setIsLoggedIn }) {
-
+function Login({ setIsLoggedIn }) {  // ✅ ADD THIS
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -12,58 +11,55 @@ function Login({ setIsLoggedIn }) {
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  console.log("🔥 Login button clicked");
 
-    if (!email || !password) {
-      setError("Please enter email and password");
-      return;
-    }
+  try {
+    setLoading(true);
+    setError("");
 
-    try {
-      setLoading(true);
-      setError("");
+    console.log("👉 Sending request...");
 
-      const res = await fetch("https://ecommerce-backend-2946.onrender.com/api/login", {
+    const res = await fetch(
+      "http://localhost:5000/api/auth/login",
+      {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await res.json();
-      console.log("Response:", data);
-
-      if (!res.ok) {
-        setError(data.message || "Login failed");
-        return;
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
       }
+    );
 
-      localStorage.setItem("token", data.token);
+    console.log("👉 Status:", res.status);
 
-      setIsLoggedIn(true);
+    const data = await res.json();
+    console.log("👉 Data:", data);
 
-      // 🔥 IMPORTANT FIX
-      navigate("/");   // ← HOME PAGE PATH
+    localStorage.setItem("token", data.token);
 
-    } catch (err) {
-      console.error(err);
-      setError("Server error. Try again!");
-    } finally {
-      setLoading(false);
-    }
-  };
+    setIsLoggedIn(true);
+    navigate("/");
+    
 
+  } catch (err) {
+    console.error("❌ FULL ERROR:", err);
+    setError("Backend not responding!");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className={Log.loginContainer}>
       <form className={Log.loginBox} onSubmit={handleLogin}>
-
-        <p>Login to AS Beauty Store 💖</p>
+        <p className={Log.title}>Login to AS Beauty Store 💖</p>
 
         {error && <p className={Log.error}>{error}</p>}
 
         <input
           type="email"
+          className={Log.input}
           placeholder="📧 Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -71,15 +67,15 @@ function Login({ setIsLoggedIn }) {
 
         <input
           type="password"
+          className={Log.input}
           placeholder="🔒 Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className={Log.button} disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>
-
       </form>
     </div>
   );

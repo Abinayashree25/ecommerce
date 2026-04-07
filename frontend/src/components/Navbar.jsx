@@ -4,12 +4,14 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { HashLink } from "react-router-hash-link";
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ setIsLoggedIn }) {
 
   const navigate = useNavigate();
 
+  // ✅ Logout function
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setIsLoggedIn(false);
     navigate("/login");
   };
 
@@ -28,14 +30,14 @@ function Navbar() {
 
       <ul className={Tom.menu}>
 
-        {/* ✅ CORRECT LINKS */}
-        <li><HashLink smooth to="/home#About">About</HashLink></li>
-        <li><HashLink smooth to="/home#Makeup">Makeup</HashLink></li>
-        <li><HashLink smooth to="/home#Skincare">Skin Care</HashLink></li>
-        <li><HashLink smooth to="/home#Haircare">Hair Care</HashLink></li>
-        <li><HashLink smooth to="/home#Contact">Contact</HashLink></li>
+        {/* ✅ Correct links (use / not /home) */}
+        <li><HashLink smooth to="/#About">About</HashLink></li>
+        <li><HashLink smooth to="/#Makeup">Makeup</HashLink></li>
+        <li><HashLink smooth to="/#Skincare">Skin Care</HashLink></li>
+        <li><HashLink smooth to="/#Haircare">Hair Care</HashLink></li>
+        <li><HashLink smooth to="/#Contact">Contact</HashLink></li>
 
-        {/* Logout */}
+        {/* ✅ Logout button */}
         {/* <li>
           <button onClick={handleLogout} className={Tom.logout}>
             Logout
@@ -48,4 +50,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default Navbar;
